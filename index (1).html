@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#080b16">
+<title>JARVIS APPLE ULTRA</title>
+<style>
+:root{color-scheme:dark;--bg:#080b16;--panel:rgba(255,255,255,.075);--line:rgba(255,255,255,.13);--blue:#69aaff;--text:#f5f7ff;--muted:#aab5ca}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -15%,#254d83 0,transparent 45%),linear-gradient(160deg,#080b16,#10172a 65%,#080b16);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Arial,sans-serif}
+main{width:min(920px,100%);margin:auto;padding:26px 17px 42px}.top{display:flex;justify-content:space-between;align-items:center}.brand{font-size:12px;letter-spacing:4px;color:#b9d7ff}.status{font-size:11px;color:#9ed6b3;border:1px solid #387a5a;padding:7px 11px;border-radius:30px}
+h1{text-align:center;font-size:clamp(36px,9vw,64px);letter-spacing:5px;margin:42px 0 5px;font-weight:700;background:linear-gradient(100deg,#fff,#9bcaff,#d8c8ff);background-clip:text;color:transparent}
+.sub{text-align:center;color:var(--muted);letter-spacing:3px;font-size:11px;margin-bottom:28px}
+.orb-wrap{display:flex;justify-content:center;margin:25px 0}.orb{width:150px;height:150px;border-radius:50%;border:1px solid #80baff88;background:radial-gradient(circle at 40% 35%,#b9e1ff,#398be8 28%,#102a58 60%,#080b16 72%);box-shadow:0 0 35px #398be866,0 0 90px #398be833;position:relative;animation:pulse 3s ease-in-out infinite}.orb:before,.orb:after{content:"";position:absolute;inset:-13px;border:1px solid #78b9ff55;border-radius:50%;transform:rotateX(68deg)}.orb:after{inset:-24px;transform:rotateY(68deg) rotateX(15deg)}@keyframes pulse{50%{box-shadow:0 0 55px #398be899,0 0 120px #398be855;transform:scale(1.035)}}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.card{background:var(--panel);border:1px solid var(--line);border-radius:19px;padding:17px;backdrop-filter:blur(16px)}.card h2{font-size:14px;margin:0 0 10px}.muted{color:var(--muted);font-size:12px;line-height:1.5}.chat{margin-top:14px}.log{height:190px;overflow:auto;padding:12px;background:#05091499;border:1px solid var(--line);border-radius:14px;font-size:13px;line-height:1.5}.msg{margin:0 0 12px}.who{color:#8fc3ff;font-weight:700}.controls{display:flex;gap:8px;margin-top:10px}.controls input{min-width:0;flex:1}.input,button{border:1px solid var(--line);border-radius:13px;padding:13px;background:#111b30;color:white;font:inherit}.input{width:100%}button{cursor:pointer;background:linear-gradient(135deg,#277bd8,#5c66d9);border:0;font-weight:600}button.secondary{background:#202b42;border:1px solid var(--line)}button:active{transform:scale(.98)}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.actions button{flex:1;min-width:110px;font-size:12px}.wide{width:100%;margin-top:12px}.footer{text-align:center;color:#78869f;font-size:11px;margin-top:22px}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.orb{width:125px;height:125px}main{padding-top:18px}.controls{flex-wrap:wrap}.controls input{flex-basis:100%}}
+</style>
+</head>
+<body>
+<main>
+ <div class="top"><div class="brand"> JARVIS SYSTEM</div><div class="status">● SYSTEM ONLINE</div></div>
+ <h1>JARVIS</h1><div class="sub">APPLE ULTRA · PERSONAL ASSISTANT</div>
+ <div class="orb-wrap"><div class="orb" aria-label="JARVIS visualizer"></div></div>
+ <div class="grid">
+  <section class="card"><h2>✦ Assistant</h2><div class="muted" id="state">Hazıram. Mənə mesaj yaz və ya mikrofon düyməsini yoxla.</div><div class="actions"><button id="listen">🎙️ Danış</button><button class="secondary" id="stop">Səsi dayandır</button></div></section>
+  <section class="card"><h2>◉ Device panel</h2><div class="muted" id="clock">Saat yüklənir…</div><div class="muted">Brauzer: <span id="browser"></span></div><div class="muted">Ekran: <span id="screen"></span></div><div class="muted">Şəbəkə: <span id="network"></span></div></section>
+ </div>
+ <section class="card chat"><h2>💬 JARVIS ilə söhbət</h2><div class="log" id="log" aria-live="polite"><p class="msg"><span class="who">JARVIS:</span> Salam! Mən JARVIS Apple Ultra interfeysiyəm. Nə ilə kömək edim?</p></div><div class="controls"><input class="input" id="prompt" placeholder="Mesajını yaz…" autocomplete="off"><button id="send">Göndər</button></div></section>
+ <div class="grid" style="margin-top:14px">
+  <section class="card"><h2>🧠 AI rejimi</h2><p class="muted">Bu fayl lokal interfeys və sadə köməkçi əmrləri ilə işləyir. Tam generativ AI üçün etibarlı AI serveri və internet bağlantısı lazımdır.</p></section>
+  <section class="card"><h2>🔐 Məxfilik</h2><p class="muted">Mesajlar bu səhifədə saxlanmır və heç bir serverə göndərilmir. Mikrofon yalnız düyməyə basanda soruşulur.</p></section>
+ </div>
+ <button class="wide secondary" id="clear">Söhbəti təmizlə</button>
+ <div class="footer">JARVIS APPLE ULTRA · HTML EDITION</div>
+</main>
+<script>
+const $=id=>document.getElementById(id), log=$('log');
+function add(who,text){const p=document.createElement('p');p.className='msg';const b=document.createElement('span');b.className='who';b.textContent=who+': ';p.append(b,document.createTextNode(text));log.appendChild(p);log.scrollTop=log.scrollHeight}
+function reply(q){const s=q.toLowerCase();if(/salam|hello|hi/.test(s))return 'Salam! Sənə necə kömək edə bilərəm?';if(/adın|kimsən|jarvis/.test(s))return 'Mən JARVIS Apple Ultra interfeysiyəm. Sadə əmrlərə cavab verə bilirəm.';if(/saat|vaxt/.test(s))return 'Hazırkı vaxt: '+new Date().toLocaleTimeString('az-AZ');if(/tarix|gün/.test(s))return 'Bugünkü tarix: '+new Date().toLocaleDateString('az-AZ');if(/kömək|help/.test(s))return 'Mənə salam, saat, tarix və ya ümumi sual yaza bilərsən. Bu versiyada tam AI modeli qoşulmayıb.';return 'Mesajını aldım. Bu offline demo versiyasında geniş AI cavabları yoxdur. Tam AI üçün ayrıca təhlükəsiz AI xidməti qoşulmalıdır.'}
+function send(){const q=$('prompt').value.trim();if(!q)return;add('SƏN',q);$('prompt').value='';const a=reply(q);setTimeout(()=>{add('JARVIS',a);$('state').textContent='Cavab hazırdır.';speak(a)},250)}
+function speak(t){if('speechSynthesis'in window){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='az-AZ';speechSynthesis.speak(u)}}
+$('send').onclick=send;$('prompt').addEventListener('keydown',e=>{if(e.key==='Enter')send()});
+$('listen').onclick=()=>{const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){$('state').textContent='Bu brauzerdə nitqin tanınması dəstəklənmir. Mesajı yaz.';return}const r=new SR();r.lang='az-AZ';r.onstart=()=>$('state').textContent='Dinləyirəm…';r.onresult=e=>{$('prompt').value=e.results[0][0].transcript;send()};r.onerror=()=>$('state').textContent='Mikrofon və ya nitq tanıma xətası.';r.onend=()=>{if($('state').textContent==='Dinləyirəm…')$('state').textContent='Dinləmə bitdi.'};r.start()};
+$('stop').onclick=()=>{if('speechSynthesis'in window)speechSynthesis.cancel();$('state').textContent='Səs dayandırıldı.'};
+$('clear').onclick=()=>{log.replaceChildren();add('JARVIS','Söhbət təmizləndi.')};
+function update(){ $('clock').textContent='Tarix və saat: '+new Date().toLocaleString('az-AZ');$('screen').textContent=innerWidth+' × '+innerHeight+' px';$('network').textContent=navigator.onLine?'Online':'Offline'}
+$('browser').textContent=navigator.userAgent.includes('iPhone')?'Safari / iOS':navigator.userAgent.includes('Android')?'Android browser':'Web browser';update();setInterval(update,1000);window.addEventListener('online',update);window.addEventListener('offline',update);
+</script>
+</body>
+</html>
