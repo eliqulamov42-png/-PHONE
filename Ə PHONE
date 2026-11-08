@@ -1,0 +1,337 @@
+
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#080b16">
+<title>Ə PHONE</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#080b16;color:white;
+ font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;
+ height:100dvh;overflow:hidden;
+}
+.phone{height:100dvh;max-width:500px;margin:auto;position:relative;
+ background:linear-gradient(145deg,#172c4c,#071020 55%,#263b64);
+ overflow:hidden}
+.wallpaper{
+ position:absolute;inset:0;
+ background:
+ radial-gradient(ellipse at 20% 25%,#467fc8 0%,transparent 40%),
+ radial-gradient(ellipse at 85% 70%,#663eaa 0%,transparent 43%),
+ linear-gradient(145deg,#101c39,#071020);
+}
+.status{
+ position:absolute;top:0;width:100%;height:43px;
+ padding:13px 24px;display:flex;justify-content:space-between;
+ z-index:5;font-size:13px;font-weight:bold;
+}
+.island{
+ position:absolute;top:8px;left:50%;transform:translateX(-50%);
+ width:110px;height:32px;background:#000;border-radius:30px;
+ z-index:8;border:1px solid #222;
+}
+.content{position:absolute;inset:48px 0 40px;z-index:2;padding:12px 20px}
+.clock{text-align:center;margin-top:30px}
+.clock h1{font-size:65px;font-weight:300;margin:0}
+.clock p{margin:5px;color:#d5dff5}
+.grid{
+ display:grid;grid-template-columns:repeat(4,1fr);
+ gap:22px 12px;margin-top:45px;
+}
+.app{text-align:center;cursor:pointer;min-width:0}
+.icon{
+ width:59px;height:59px;border-radius:17px;
+ margin:auto auto 7px;display:flex;
+ align-items:center;justify-content:center;
+ font-size:29px;
+ background:linear-gradient(145deg,#fff4,#ffffff13);
+ border:1px solid #ffffff30;
+ box-shadow:0 5px 15px #0004;
+}
+.app span{font-size:11px;text-shadow:0 2px 5px #000}
+.dock{
+ position:absolute;bottom:12px;left:4%;width:92%;
+ height:85px;border-radius:27px;
+ background:#ffffff25;backdrop-filter:blur(25px);
+ display:flex;justify-content:space-evenly;
+ align-items:center;z-index:4;
+}
+.dock .icon{margin:0}
+.homebar{
+ position:absolute;bottom:5px;left:50%;
+ transform:translateX(-50%);
+ width:115px;height:5px;border-radius:10px;
+ background:white;z-index:10;
+}
+.page{
+ position:absolute;inset:0;background:#f4f4f8;color:#111;
+ z-index:7;display:none;overflow:auto;padding:55px 18px 35px;
+}
+.page h2{font-size:29px;margin:10px 0 20px}
+.back{border:0;background:#e4e7ef;color:#1677d2;
+ padding:10px 16px;border-radius:20px}
+.item{
+ background:white;padding:17px;margin:9px 0;
+ border-radius:13px;display:flex;justify-content:space-between;
+ align-items:center;font-size:15px;
+}
+.page input,.page textarea{
+ width:100%;padding:13px;border:1px solid #ddd;
+ border-radius:12px;margin:8px 0;font-size:16px;
+}
+.page button.action{
+ background:#1677ed;color:white;border:0;
+ padding:12px 17px;border-radius:12px;margin:5px;
+}
+.page .result{margin-top:15px;white-space:pre-wrap}
+#lock{
+ position:absolute;inset:0;z-index:12;
+ display:none;text-align:center;padding-top:100px;
+ background:linear-gradient(145deg,#182d50,#090f20);
+}
+#lock h1{font-size:75px;font-weight:300;margin:0}
+#lock p{margin:10px}
+#control{
+ position:absolute;inset:0;z-index:11;
+ background:#111d35ee;backdrop-filter:blur(25px);
+ display:none;padding:75px 22px;
+}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{background:#ffffff22;border-radius:18px;padding:22px;text-align:center}
+</style>
+</head>
+<body>
+<div class="phone">
+<div class="wallpaper"></div>
+
+<div class="status">
+<span id="statusTime">09:41</span>
+<div class="island"></div>
+<span>● Wi-Fi ▰</span>
+</div>
+
+<div class="content">
+<div class="clock">
+<h1 id="clock">09:41</h1>
+<p id="date"></p>
+</div>
+
+<div class="grid">
+<div class="app" onclick="openApp('Phone')"><div class="icon">📞</div><span>Phone</span></div>
+<div class="app" onclick="openApp('Messages')"><div class="icon">💬</div><span>Messages</span></div>
+<div class="app" onclick="openApp('Safari')"><div class="icon">🧭</div><span>Safari</span></div>
+<div class="app" onclick="openApp('Camera')"><div class="icon">📷</div><span>Camera</span></div>
+<div class="app" onclick="openApp('Photos')"><div class="icon">🌈</div><span>Photos</span></div>
+<div class="app" onclick="openApp('Settings')"><div class="icon">⚙️</div><span>Settings</span></div>
+<div class="app" onclick="openApp('App Store')"><div class="icon">🅰️</div><span>App Store</span></div>
+<div class="app" onclick="openApp('Calculator')"><div class="icon">🧮</div><span>Calculator</span></div>
+<div class="app" onclick="openApp('Notes')"><div class="icon">📝</div><span>Notes</span></div>
+<div class="app" onclick="openApp('Weather')"><div class="icon">🌤️</div><span>Weather</span></div>
+<div class="app" onclick="openApp('Music')"><div class="icon">🎵</div><span>Music</span></div>
+<div class="app" onclick="openApp('Calendar')"><div class="icon">📅</div><span>Calendar</span></div>
+</div>
+</div>
+
+<div class="dock">
+<div class="app" onclick="openApp('Phone')"><div class="icon">📞</div></div>
+<div class="app" onclick="openApp('Safari')"><div class="icon">🧭</div></div>
+<div class="app" onclick="openApp('Messages')"><div class="icon">💬</div></div>
+<div class="app" onclick="openApp('Music')"><div class="icon">🎵</div></div>
+</div>
+
+<div id="page" class="page">
+<button class="back" onclick="closeApp()">‹ Ana ekran</button>
+<h2 id="appTitle"></h2>
+<div id="appContent"></div>
+</div>
+
+<div id="lock">
+<h1 id="lockClock">09:41</h1>
+<p id="lockDate"></p>
+<p>🔒 Ə PHONE</p>
+<button class="action" onclick="unlock()">AÇ</button>
+</div>
+
+<div id="control">
+<h2>Control Center</h2>
+<div class="controls">
+<div class="tile" onclick="toggle(this)">📶 Wi-Fi<br><b>ON</b></div>
+<div class="tile" onclick="toggle(this)">🔵 Bluetooth<br><b>ON</b></div>
+<div class="tile" onclick="toggle(this)">✈️ Airplane<br><b>OFF</b></div>
+<div class="tile" onclick="toggle(this)">🌙 Focus<br><b>OFF</b></div>
+</div>
+<p>Parlaqlıq</p>
+<input type="range" min="20" max="100" value="100" id="brightness">
+<button class="action" onclick="closeControl()">Bağla</button>
+</div>
+
+<div class="homebar" onclick="home()"></div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+
+function updateClock(){
+ let d=new Date();
+ let time=d.toLocaleTimeString("az-AZ",{hour:"2-digit",minute:"2-digit"});
+ $("clock").textContent=time;
+ $("statusTime").textContent=time;
+ $("lockClock").textContent=time;
+ $("date").textContent=d.toLocaleDateString("az-AZ",{weekday:"long",day:"numeric",month:"long"});
+ $("lockDate").textContent=$("date").textContent;
+}
+setInterval(updateClock,1000);
+updateClock();
+
+function openApp(name){
+ $("page").style.display="block";
+ $("appTitle").textContent=name;
+ const c=$("appContent");
+ c.replaceChildren();
+
+ function add(html){
+  c.insertAdjacentHTML("beforeend",html);
+ }
+
+ if(name==="Settings"){
+  add(`
+  <div class="item">Wi-Fi <b>●</b></div>
+  <div class="item">Bluetooth <b>●</b></div>
+  <div class="item">Wallpaper <b>🌌</b></div>
+  <div class="item">Ə PHONE haqqında <b>1.0</b></div>
+  <div class="item">Kilid ekranı <button onclick="lock()">Kilidlə</button></div>
+  <div class="item">Control Center <button onclick="showControl()">Aç</button></div>`);
+ }
+ else if(name==="Calculator"){
+  add(`<input id="calc" placeholder="Məsələn: 20+30">
+  <button class="action" onclick="calc()">Hesabla</button>
+  <div class="result" id="answer"></div>`);
+ }
+ else if(name==="Safari"){
+  add(`<p>Safari brauzer</p>
+  <input id="url" placeholder="google.com">
+  <button class="action" onclick="browse()">Aç</button>
+  <p>Əlaqəli saytlar</p>
+  <button class="action" onclick="site('https://www.google.com')">Google</button>
+  <button class="action" onclick="site('https://www.youtube.com')">YouTube</button>`);
+ }
+ else if(name==="Notes"){
+  add(`<textarea id="notes" rows="9" placeholder="Qeydlərini yaz..."></textarea>
+  <button class="action" onclick="saveNote()">Saxla</button>
+  <p id="saved"></p>`);
+  $("appContent").querySelector("#notes").value=localStorage.getItem("ephone_notes")||"";
+ }
+ else if(name==="Phone"){
+  add(`<p>Telefon interfeysi</p>
+  <input id="number" type="tel" placeholder="Nömrə daxil et">
+  <button class="action" onclick="call()">📞 Zəng et</button>
+  <p id="callResult"></p>`);
+ }
+ else if(name==="Messages"){
+  add(`<input id="message" placeholder="Mesaj yaz">
+  <button class="action" onclick="sendMessage()">Göndər</button>
+  <p id="messageResult"></p>
+  <p class="result">Bu, nümayiş mesajıdır. Real SMS göndərmir.</p>`);
+ }
+ else if(name==="Camera"){
+  add(`<p>📷 Kamera interfeysi</p>
+  <video id="video" autoplay playsinline style="width:100%;border-radius:15px;background:#111"></video>
+  <button class="action" onclick="camera()">Kameranı aç</button>
+  <button class="action" onclick="stopCamera()">Dayandır</button>
+  <p id="cameraStatus"></p>`);
+ }
+ else if(name==="Photos"){
+  add(`<p>🖼️ Şəkil seç</p>
+  <input type="file" accept="image/*" id="photo" onchange="showPhoto(event)">
+  <img id="photoView" style="width:100%;margin-top:10px;border-radius:15px">`);
+ }
+ else if(name==="Weather"){
+  add(`<p>🌤️ Hava bölməsi</p><p>Canlı hava məlumatı üçün internet və hava xidməti lazımdır.</p>`);
+ }
+ else if(name==="Music"){
+  add(`<p>🎵 Musiqi bölməsi</p><input type="file" accept="audio/*" id="audioFile">
+  <audio id="audio" controls style="width:100%"></audio>`);
+  $("audioFile").onchange=e=>{
+   if(e.target.files[0])$("audio").src=URL.createObjectURL(e.target.files[0]);
+  };
+ }
+ else if(name==="Calendar"){
+  add(`<input type="date" id="calendarDate"><p>Tarix seç.</p>`);
+ }
+ else if(name==="App Store"){
+  add(`<p>🅰️ Tətbiqlər</p>
+  <div class="item">Safari <b>Quraşdırılıb</b></div>
+  <div class="item">Calculator <b>Quraşdırılıb</b></div>
+  <p>Bu simulyatorda real App Store yükləmələri yoxdur.</p>`);
+ }
+}
+
+function closeApp(){
+ $("page").style.display="none";
+ stopCamera();
+}
+function home(){closeApp();closeControl()}
+function lock(){$("lock").style.display="block";closeApp()}
+function unlock(){$("lock").style.display="none"}
+function showControl(){$("control").style.display="block"}
+function closeControl(){$("control").style.display="none"}
+function toggle(el){
+ let b=el.querySelector("b");
+ b.textContent=b.textContent==="ON"?"OFF":"ON";
+}
+$("brightness").oninput=e=>{
+ $("page").style.filter="brightness("+e.target.value/100+")";
+ $("content");
+};
+function calc(){
+ let v=$("calc").value.trim();
+ if(!/^[0-9+\-*/().%\s]+$/.test(v)){
+  $("answer").textContent="Yanlış ifadə";return;
+ }
+ try{
+  let n=Function('"use strict";return ('+v+')')();
+  $("answer").textContent=Number.isFinite(n)?n:"Hesablamaq mümkün deyil";
+ }catch{$("answer").textContent="Yanlış hesablama"}
+}
+function browse(){
+ let v=$("url").value.trim();
+ if(!v)return;
+ if(!/^https?:\/\//i.test(v))v="https://"+v;
+ try{let u=new URL(v);if(!["http:","https:"].includes(u.protocol))return;window.open(u.href,"_blank","noopener")}
+ catch{}
+}
+function site(url){window.open(url,"_blank","noopener")}
+function saveNote(){
+ localStorage.setItem("ephone_notes",$("notes").value);
+ $("saved").textContent="Saxlanıldı ✓";
+}
+function call(){
+ let n=$("number").value.trim();
+ $("callResult").textContent=n?"Real zəng üçün telefon tətbiqindən istifadə edin: "+n:"Nömrə daxil edin.";
+}
+function sendMessage(){
+ $("messageResult").textContent=$("message").value?"Mesaj nümayiş üçün yazıldı. Real SMS göndərilmir.":"Mesaj yazın.";
+}
+let cameraStream=null;
+async function camera(){
+ try{
+  cameraStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:"environment"}});
+  $("video").srcObject=cameraStream;
+  $("cameraStatus").textContent="Kamera aktivdir.";
+ }catch(e){$("cameraStatus").textContent="Kamera icazəsi verilmədi və ya dəstəklənmir."}
+}
+function stopCamera(){
+ if(cameraStream)cameraStream.getTracks().forEach(t=>t.stop());
+ cameraStream=null;
+ let v=$("video");if(v)v.srcObject=null;
+}
+function showPhoto(e){
+ const f=e.target.files[0];
+ if(f)$("photoView").src=URL.createObjectURL(f);
+}
+</script>
+</body>
+</html>
